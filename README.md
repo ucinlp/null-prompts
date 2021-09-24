@@ -53,7 +53,7 @@ modified. To construct prompts we use the same template-based approach as the
 [`ucinlp/autoprompt`](https://github.com/ucinlp/autoprompt) codebase. An
 example prompt for SST-2 might look like:
 
-      `[T] {sentence} [T] [T] [P] .`
+`[T] {sentence} [T] [T] [P] .`
 
 Where `[T]` denotes prompt tokens that are learned, `{sentence}` is a
 placeholder for the `sentence` field, and `[P]` denotes the placement of the
@@ -74,7 +74,7 @@ If you use this codebase in your own research, please cite:
 ```{latex}
 @misc{logan2021cutting,
       title={Cutting Down on Prompts and Parameters: Simple Few-Shot Learning with Language Models}, 
-      author={Robert L. Logan IV au2 and Ivana Balažević and Eric Wallace and Fabio Petroni and Sameer Singh and Sebastian Riedel},
+      author={Robert L. Logan IV and Ivana Balažević and Eric Wallace and Fabio Petroni and Sameer Singh and Sebastian Riedel},
       year={2021},
       eprint={2106.13353},
       archivePrefix={arXiv},
