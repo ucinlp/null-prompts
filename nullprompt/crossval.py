@@ -220,7 +220,7 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('input', type=pathlib.Path, help='JSONL file containing jobs.')
+    parser.add_argument('input', type=pathlib.Path, help='YAML file containing jobs.')
     parser.add_argument('-k', '--num_folds', type=int, default=4)
     parser.add_argument('-n', '--num_seeds', type=int, default=10)
     parser.add_argument('--logdir', type=pathlib.Path, default='results/')

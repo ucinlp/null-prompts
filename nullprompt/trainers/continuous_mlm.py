@@ -1,4 +1,5 @@
 """Continuous triggers for MLM prompting."""
+
 import argparse
 import contextlib
 import io
@@ -547,7 +548,7 @@ if __name__ == '__main__':
                         help='L1 regularization weight (if using linear combination MLM)')
 
     # Priming param
-    parser.add_argument('--prime', action='store_true', help='enables priming')
+    #  parser.add_argument('--prime', action='store_true', help='enables priming')
 
     # Additional options
     parser.add_argument('-f', '--force-overwrite', action='store_true',
