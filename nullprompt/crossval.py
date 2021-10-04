@@ -13,6 +13,7 @@ import transformers
 import yaml
 
 import nullprompt.data as data
+import nullprompt.defaults as defaults
 import nullprompt.templatizers as templatizers
 import nullprompt.trainers as trainers
 import nullprompt.utils as utils
@@ -27,7 +28,9 @@ def generate_args(proto_config):
     values = proto_config['parameters'].values()
     for instance in itertools.product(*values):
         parameters = dict(zip(keys, instance))
-        yield {**proto_config['args'], **parameters}
+        # Order is important here, default config needs to be first to avoid
+        # overwriting.
+        yield {**defaults.DEFAULT_CONFIG, **proto_config['args'], **parameters}
 
 
 def kfold(args, trainer_class, num_folds):
