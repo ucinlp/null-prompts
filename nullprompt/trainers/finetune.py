@@ -1,4 +1,4 @@
-"""Finetuning for classification."""
+"""Standard [CLS]-based finetuning for classification."""
 
 import argparse
 import contextlib

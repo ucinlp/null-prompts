@@ -1,4 +1,7 @@
-"""Continuous triggers for MLM prompting."""
+"""Prompt-based finetuning.
+
+Trainer also supports different lightweight optimization methods.
+"""
 
 import argparse
 import contextlib

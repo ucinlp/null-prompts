@@ -35,6 +35,39 @@ directory. To replicate one of these experiments run:
 python -m nullprompt.crossval [PATH TO CONFIG]
 ```
 
+#### A Note on Config Names
+
+The config names are comprised of a sequence of underscore delimited field.
+Each config starts with the name of the task, e.g., `boolq`, `cb`, etc.
+The next field is the model the config is for, either: `roberta` or `albert`.
+
+Afterwards comes `initial-trigger` which is either: `true` or `false`.
+This field specifies whether or not trigger tokens in the prompt are
+manually initialized, and is only useful for models that have some kind of
+learned prompt.
+
+Finally there is the `finetune-mode` field, which describes which parameters
+are finetuned, the options are:
+- `adapter`: Adapter layers are added to the model and only the adapter weights
+  are tuned.
+- `all`: All parameters are tuned.
+- `bitfit`: Bias terms are tuned.
+- `calibration`: A calibration layer is added on top of the lm head, and its
+  weights are tuned. 
+- `discrete`: The prompt tokens are tuned using the approach described in the [AutoPrompt](https://arxiv.org/abs/2010.15980) paper.
+- `layernorm`: Bias terms and layernorm parameters are tuned.
+- `partial`: Trigger weights and the lm head weights are tuned.
+- `triggers`: Only the embeddings of the prompt tokens are tuned.
+Note that in some cases we experiment with combining some of these settings, in
+which case they are joined with a `+` sign (e.g., `bitfit+triggers`).
+
+Any remaining text provides additional description of the experiment setting.
+Notably: 
+- `no-trigger`: means that a *Null Prompt* was used,
+- `random-labels`: means that a *Null Verbalizer* was used, and 
+- `n-token` means that `n` trigger tokens were prepended to the prompt.
+
+
 ### Using `trainers` Scripts
 
 For more fine-grained control, e.g., if you would not like to run
@@ -66,7 +99,6 @@ before being fed into a template. For example, a single instance might need to
 be turned into many prompts (e.g., for multirc). In this case, you may need to
 write a custom preprocessing function. Refer to the functions in
 `nullprompt/preprocessors.py` for example.
-
 
 ## Citation
 

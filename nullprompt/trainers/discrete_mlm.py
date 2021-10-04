@@ -1,4 +1,4 @@
-"""Discrete triggers for MLM prompting."""
+"""Discrete triggers for MLM prompting, i.e., AutoPrompt."""
 
 import argparse
 import logging
