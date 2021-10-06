@@ -551,7 +551,9 @@ if __name__ == '__main__':
                         help='L1 regularization weight (if using linear combination MLM)')
 
     # Priming param
-    #  parser.add_argument('--prime', action='store_true', help='enables priming')
+    parser.add_argument('--prime', action='store_true', help='enables priming')
+    parser.add_argument('--max_priming_examples', type=int, default=64,
+                        help='maximum number of priming examples to include')
 
     # Additional options
     parser.add_argument('-f', '--force-overwrite', action='store_true',
