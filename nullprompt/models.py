@@ -113,6 +113,7 @@ class ContinuousTriggerMLM(torch.nn.Module):
         batch_size = input_ids.size(0)
         if self.trigger_embeddings.size(0) > 0:
             reps = trigger_mask.sum(dim=-1) // self.trigger_embeddings.size(0)
+            print(reps)
             for row, t_mask, rep in zip(inputs_embeds, trigger_mask, reps):
                 row[t_mask] = self.trigger_embeddings.repeat((rep.item(), 1))
         #  inputs_embeds[trigger_mask] = self.trigger_embeddings.repeat((batch_size, 1))
