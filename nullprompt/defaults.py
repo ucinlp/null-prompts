@@ -31,5 +31,7 @@ DEFAULT_CONFIG = {
     'theta': 1e32,
     'force_overwrite': False,
     'quiet': False,
-    'tmp': True
+    'tmp': True,
+    'prime': False,
+    'max_priming_examples': 64,
 }
