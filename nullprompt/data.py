@@ -412,12 +412,25 @@ def load_datasets(args, templatizer, distributed_config):
     dataset_constructor = DATASET_CONSTRUCTORS[args['evaluation_strategy']]
     collator = Collator(pad_token_id=templatizer.pad_token_id)
 
+    if args['prime']:
+        priming_dataset = dataset_constructor(
+            args['train'],
+            templatizer=templatizer,
+            train=True,
+            preprocessor_key=args['preprocessor'],
+            limit=args['limit'],
+        )
+    else:
+        priming_dataset = None
+
     train_dataset = dataset_constructor(
         args['train'],
         templatizer=templatizer,
         train=True,
         preprocessor_key=args['preprocessor'],
         limit=args['limit'],
+        priming_dataset=priming_dataset,
+        max_priming_examples=args['max_priming_examples'],
     )
     train_sampler = get_sampler(train_dataset, args['evaluation_strategy'], distributed_config, train=True)
     train_loader = DataLoader(train_dataset, batch_size=args['bsz'], collate_fn=collator, sampler=train_sampler)
@@ -430,6 +443,8 @@ def load_datasets(args, templatizer, distributed_config):
         templatizer=templatizer,
         preprocessor_key=args['preprocessor'],
         limit=args['limit'],
+        priming_dataset=priming_dataset,
+        max_priming_examples=args['max_priming_examples'],
     )
     dev_sampler = get_sampler(dev_dataset, args['evaluation_strategy'], distributed_config, train=False)
     dev_loader = DataLoader(dev_dataset, batch_size=args['bsz'], collate_fn=collator, sampler=dev_sampler)
@@ -438,7 +453,8 @@ def load_datasets(args, templatizer, distributed_config):
         args['test'],
         templatizer=templatizer,
         preprocessor_key=args['preprocessor'],
-        #  priming_dataset=train_dataset if args['prime'] else None
+        priming_dataset=priming_dataset,
+        max_priming_examples=args['max_priming_examples'],
     )
     test_sampler = get_sampler(test_dataset, args['evaluation_strategy'], distributed_config, train=False)
     test_loader = DataLoader(test_dataset, batch_size=args['bsz'], collate_fn=collator, sampler=test_sampler)
