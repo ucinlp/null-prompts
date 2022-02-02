@@ -35,6 +35,8 @@ directory. To replicate one of these experiments run:
 python -m nullprompt.crossval [PATH TO CONFIG]
 ```
 
+The datasets used in our experiments are available in [this](https://drive.google.com/drive/folders/1rOewIDLLX5ZkW-53AYeEoeUViQXkL01o) Google Drive directory.
+
 #### A Note on Config Names
 
 The config names are comprised of a sequence of underscore delimited field.
