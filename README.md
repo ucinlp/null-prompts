@@ -21,7 +21,7 @@ pip install -e .
 
 ### Few-Shot Data
 
-The datasets used in our experiments can be downloaded from: TBD.
+The datasets used in our experiments can be downloaded from Google Drive [here](https://drive.google.com/drive/folders/1rOewIDLLX5ZkW-53AYeEoeUViQXkL01o).
 
 
 ## Running Experiments
@@ -34,8 +34,6 @@ directory. To replicate one of these experiments run:
 ```{bash}
 python -m nullprompt.crossval [PATH TO CONFIG]
 ```
-
-The datasets used in our experiments are available in [this](https://drive.google.com/drive/folders/1rOewIDLLX5ZkW-53AYeEoeUViQXkL01o) Google Drive directory.
 
 #### A Note on Config Names
 
